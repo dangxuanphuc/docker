@@ -8,13 +8,13 @@ default: &default
   host: db
 development:
   <<: *default
-  database: rails_movie_development
+  database: project_name_development
 test:
   <<: *default
-  database: rails_movie_test
+  database: project_name_test
 production:
   <<: *default
-  database: rails_movie_production
+  database: project_name_production
 
 
 #####  mysql
@@ -27,13 +27,12 @@ default: &default
   pool: 5
 development:
   <<: *default
-  database: rails_timeline_development
-
+  database: project_name_development
   redis:
     host: 127.0.0.1
     port: 6379
     db: 0
     options:
-      namespace: rails_timeline_development
+      namespace: project_name_development
       expires_in: 86400
       compress: false
