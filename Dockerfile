@@ -6,7 +6,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
-RUN gem install bundler -v '2.1.2' && bundle install --jobs 20 --retry 5
+RUN gem install bundler -v "2.1.2" && bundle install --jobs 20 --retry 5
 RUN npm install -g yarn
 RUN yarn install --check-files
 COPY . ./
