@@ -1,39 +1,22 @@
-####@  pg
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  username: postgres
-  password:
-  host: db
-development:
-  <<: *default
-  database: project_name_development
-test:
-  <<: *default
-  database: project_name_test
-production:
-  <<: *default
-  database: project_name_production
-
-
-#####  mysql
-default: &default
+mysql: &mysql
   adapter: mysql2
   encoding: utf8mb4
   host: db
   username: root
   password: 123456
   pool: 5
+postgres: &postgres
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 development:
-  <<: *default
-  database: project_name_development
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    db: 0
-    options:
-      namespace: project_name_development
-      expires_in: 86400
-      compress: false
+  <<: *mysql
+  database: project_development
+test:
+  <<: *mysql
+  database: project_test
+production:
+  <<: *postgres
+  database: project_production
+  username: project
+  password: <%= ENV['PROJECT_PASSWORD'] %>
